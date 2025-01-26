@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horloge SVG</title>
+    <style>
+        svg {
+            border: 1px solid #ccc;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<!--
+    je voudrais un programme javascript qui crée comme une horloge de douze éléments svg. chaque element est un cercle de diametre 80 pixels et les douze elements sont disposés en cercle. Dans chaque cercle il y a une lettre de l'alphabet et les lettres vont de A à L.
+-->
+<svg width="300" height="300" id="clock">
+</svg>
+
+<script>
+    const svg = document.getElementById('clock');
+    const radius = 100; // Rayon du cercle
+    const circleDiameter = 80; // Diamètre des cercles
+    const letters = 'ABCDEFGHIJKL'; // Lettres de A à L
+
+    for (let i = 0; i < letters.length; i++) {
+        const angle = (i * 30) * (Math.PI / 180); // Convertir les degrés en radians
+        const x = 150 + radius * Math.cos(angle) - circleDiameter / 2; // Position X
+        const y = 150 + radius * Math.sin(angle) - circleDiameter / 2; // Position Y
+
+        // Créer un cercle
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("cx", x + circleDiameter / 2);
+        circle.setAttribute("cy", y + circleDiameter / 2);
+        circle.setAttribute("r", circleDiameter / 2);
+        circle.setAttribute("fill", "#f0f0f0");
+        circle.setAttribute("stroke", "#000");
+
+        // Ajouter le cercle au SVG
+        svg.appendChild(circle);
+
+        // Créer un texte pour la lettre
+        const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        text.setAttribute("x", x + circleDiameter / 2);
+        text.setAttribute("y", y + circleDiameter / 2 + 5); // Ajuster la position Y pour centrer le texte
+        text.setAttribute("font-size", "24");
+        text.setAttribute("text-anchor", "middle");
+        text.setAttribute("fill", "#000");
+        text.textContent = letters[i];
+
+        // Ajouter le texte au SVG
+        svg.appendChild(text);
+    }
+</script>
+
+</body>
+</html>
