@@ -14,27 +14,35 @@
 </head>
 <body>
 <!--
-    je voudrais un programme javascript qui crée comme une horloge de douze éléments svg. chaque element est un cercle de diametre 80 pixels et les douze elements sont disposés en cercle. Dans chaque cercle il y a une lettre de l'alphabet et les lettres vont de A à L.
+je voudrais un programme javascript qui crée comme une horloge de douze
+éléments svg. chaque element est un cercle de diametre 80 pixels et les douze
+elements sont disposés en cercle. Dans chaque cercle il y a une lettre de
+l'alphabet et les lettres vont de A à L.
 -->
-<svg width="300" height="300" id="clock">
-</svg>
+<svg width="800" height="600" id="clock"></svg>
 
 <script>
     const svg = document.getElementById('clock');
-    const radius = 100; // Rayon du cercle
-    const circleDiameter = 80; // Diamètre des cercles
-    const letters = 'ABCDEFGHIJKL'; // Lettres de A à L
+    const svg_w = 800;
+    const svg_h = 600;
+    const clock_radius = 240;
+    const note_radius = 50;
+    const notes_flats = ['C', 'D♭', 'D', 'E♭', 'E', 'F', 'G♭', 'G', 'A♭', 'A', 'B♭', 'B'];
+    const notes_sharps = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
+    const notes = notes_flats;
 
-    for (let i = 0; i < letters.length; i++) {
-        const angle = (i * 30) * (Math.PI / 180); // Convertir les degrés en radians
-        const x = 150 + radius * Math.cos(angle) - circleDiameter / 2; // Position X
-        const y = 150 + radius * Math.sin(angle) - circleDiameter / 2; // Position Y
+    for (let i = 0; i < 12; i++) {
+        // anti-trig + start at the top of the circle
+        const angle = - i * (2 * Math.PI / 12) + Math.PI/2;
+        const x = svg_w/2 + clock_radius * Math.cos(angle) - note_radius;
+        // minus sin because Ys are towards the bottom of the page
+        const y = svg_h/2 - clock_radius * Math.sin(angle) - note_radius;
 
         // Créer un cercle
         const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        circle.setAttribute("cx", x + circleDiameter / 2);
-        circle.setAttribute("cy", y + circleDiameter / 2);
-        circle.setAttribute("r", circleDiameter / 2);
+        circle.setAttribute("cx", x + note_radius);
+        circle.setAttribute("cy", y + note_radius);
+        circle.setAttribute("r", note_radius);
         circle.setAttribute("fill", "#f0f0f0");
         circle.setAttribute("stroke", "#000");
 
@@ -43,12 +51,12 @@
 
         // Créer un texte pour la lettre
         const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        text.setAttribute("x", x + circleDiameter / 2);
-        text.setAttribute("y", y + circleDiameter / 2 + 5); // Ajuster la position Y pour centrer le texte
+        text.setAttribute("x", x + note_radius);
+        text.setAttribute("y", y + note_radius + 5);
         text.setAttribute("font-size", "24");
         text.setAttribute("text-anchor", "middle");
         text.setAttribute("fill", "#000");
-        text.textContent = letters[i];
+        text.textContent = notes[i];
 
         // Ajouter le texte au SVG
         svg.appendChild(text);
