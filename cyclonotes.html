@@ -20,6 +20,41 @@ elements sont disposés en cercle. Dans chaque cercle il y a une lettre de
 l'alphabet et les lettres vont de A à L.
 -->
 <svg width="600" height="600" id="clock"></svg>
+<form>
+  <input type="radio" id="flats" name="flats_or_sharps" value="flats" checked>
+  <label for="html">Flats</label><br>
+  <input type="radio" id="sharps" name="flats_or_sharps" value="sharps">
+  <label for="css">Sharps</label><br>
+  <label for="vol">Starting note:</label>
+  <input type="range" id="starting" name="starting" min="0" max="20">
+
+  <br>
+  <input type="checkbox" id="s1_01" name="s1_01" value="s1_01" checked>
+  <input type="checkbox" id="s1_02" name="s1_02" value="s1_02">
+  <input type="checkbox" id="s1_03" name="s1_03" value="s1_03" checked>
+  <input type="checkbox" id="s1_04" name="s1_04" value="s1_04">
+  <input type="checkbox" id="s1_05" name="s1_05" value="s1_05" checked>
+  <input type="checkbox" id="s1_06" name="s1_06" value="s1_06" checked>
+  <input type="checkbox" id="s1_07" name="s1_07" value="s1_07">
+  <input type="checkbox" id="s1_08" name="s1_08" value="s1_08" checked>
+  <input type="checkbox" id="s1_09" name="s1_09" value="s1_09">
+  <input type="checkbox" id="s1_10" name="s1_10" value="s1_10" checked>
+  <input type="checkbox" id="s1_11" name="s1_11" value="s1_11">
+  <input type="checkbox" id="s1_12" name="s1_12" value="s1_12" checked>
+  <br>
+  <input type="checkbox" id="s2_01" name="s2_01" value="s2_01">
+  <input type="checkbox" id="s2_02" name="s2_02" value="s2_02">
+  <input type="checkbox" id="s2_03" name="s2_03" value="s2_03">
+  <input type="checkbox" id="s2_04" name="s2_04" value="s2_04">
+  <input type="checkbox" id="s2_05" name="s2_05" value="s2_05">
+  <input type="checkbox" id="s2_06" name="s2_06" value="s2_06">
+  <input type="checkbox" id="s2_07" name="s2_07" value="s2_07">
+  <input type="checkbox" id="s2_08" name="s2_08" value="s2_08">
+  <input type="checkbox" id="s2_09" name="s2_09" value="s2_09">
+  <input type="checkbox" id="s2_10" name="s2_10" value="s2_10">
+  <input type="checkbox" id="s2_11" name="s2_11" value="s2_11">
+  <input type="checkbox" id="s2_12" name="s2_12" value="s2_12">
+</form>
 
 <script>
     const svg = document.getElementById('clock');
@@ -31,6 +66,7 @@ l'alphabet et les lettres vont de A à L.
     const notes_sharps = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
     const notes = notes_flats;
 
+function draw() {
     for (let i = 0; i < 12; i++) {
         // anti-trig + start at the top of the circle
         const angle = - i * (2 * Math.PI / 12) + Math.PI/2;
@@ -61,6 +97,9 @@ l'alphabet et les lettres vont de A à L.
         // Ajouter le texte au SVG
         svg.appendChild(text);
     }
+}
+
+draw();
 </script>
 
 </body>
