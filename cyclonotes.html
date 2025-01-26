@@ -21,11 +21,13 @@ l'alphabet et les lettres vont de A à L.
 -->
 <svg width="600" height="600" id="clock"></svg>
 <form>
+  <label>
   <input type="radio" onchange="change(this);" name="flats_or_sharps" value="flats" checked>
-  <label for="html">Flats</label><br>
+      Flats</label><br>
+  <label>
   <input type="radio" onchange="change(this);" name="flats_or_sharps" value="sharps">
-  <label for="css">Sharps</label><br>
-  <label for="vol">Starting note:</label>
+      Sharps</label><br>
+  <label>Starting note:</label>
   <input type="range" onchange="change(this);" name="note" min="-12" max="12">
   <br>
   <br>
